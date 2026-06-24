@@ -1,0 +1,63 @@
+@model DeliveryOrders.Models.Order
+
+@{
+    ViewData["Title"] = "Просмотр заказа";
+}
+
+<div class="screen screen-details stack-6">
+    @if (TempData["SuccessMessage"] is string successMessage)
+    {
+        <div class="alert alert-success" role="alert">
+            @successMessage
+        </div>
+    }
+
+    <div class="details-card">
+        <div class="divider" style="margin-top:0;margin-bottom:1.5rem;"></div>
+        <h2>Заказ @Model.OrderNumber</h2>
+
+        <div class="details-group">
+            <div>
+                <p class="muted mb-2">Отправитель</p>
+                <div class="details-row">
+                    <span class="muted">Город:</span>
+                    <span>@Model.SenderCity</span>
+                </div>
+                <div class="details-row">
+                    <span class="muted">Адрес:</span>
+                    <span>@Model.SenderAddress</span>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div>
+                <p class="muted mb-2">Получатель</p>
+                <div class="details-row">
+                    <span class="muted">Город:</span>
+                    <span>@Model.RecipientCity</span>
+                </div>
+                <div class="details-row">
+                    <span class="muted">Адрес:</span>
+                    <span>@Model.RecipientAddress</span>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div>
+                <p class="muted mb-2">Информация о грузе</p>
+                <div class="details-row">
+                    <span class="muted">Вес груза:</span>
+                    <span>@Model.CargoWeightKg.ToString("0.##") кг</span>
+                </div>
+                <div class="details-row">
+                    <span class="muted">Дата забора:</span>
+                    <span>@Model.PickupDate.ToString("dd.MM.yyyy")</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a class="btn btn-outline-secondary submit-btn" asp-action="Index">Назад к списку</a>
+</div>

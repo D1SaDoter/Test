@@ -1,0 +1,42 @@
+@model IReadOnlyCollection<DeliveryOrders.Models.Order>
+
+@{
+    ViewData["Title"] = "Список заказов";
+}
+
+@if (Model.Count == 0)
+{
+    <div class="screen screen-list empty-state">
+        <p>Заказы не найдены</p>
+        <p>Создайте первый заказ на вкладке "Создать заказ"</p>
+    </div>
+}
+else
+{
+    <div class="screen screen-list orders-feed">
+        @foreach (var order in Model)
+        {
+            <a class="order-card-link" asp-action="Details" asp-route-id="@order.Id">
+                <div class="order-card">
+                    <div class="order-card-head">
+                        <div>
+                            <h3>Заказ @order.OrderNumber</h3>
+                            <p>Дата забора: @order.PickupDate.ToString("dd.MM.yyyy")</p>
+                        </div>
+                        <div class="order-weight">@order.CargoWeightKg.ToString("0.##") кг</div>
+                    </div>
+                    <div class="order-grid">
+                        <div>
+                            <p class="muted">Отправитель:</p>
+                            <p>@order.SenderCity, @order.SenderAddress</p>
+                        </div>
+                        <div>
+                            <p class="muted">Получатель:</p>
+                            <p>@order.RecipientCity, @order.RecipientAddress</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+}

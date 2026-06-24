@@ -1,0 +1,35 @@
+@{
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    var action = ViewContext.RouteData.Values["action"]?.ToString();
+    var isCreatePage = controller == "Orders" && action == "Create";
+    var isListPage = controller == "Orders" && action == "Index";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Delivery Orders</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DeliveryOrders.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <nav class="app-nav">
+        <div class="app-nav-inner">
+            <a class="nav-tab @(isCreatePage ? "active" : null)" asp-area="" asp-controller="Orders" asp-action="Create">Создать заказ</a>
+            <a class="nav-tab @(isListPage ? "active" : null)" asp-area="" asp-controller="Orders" asp-action="Index">Список заказов</a>
+        </div>
+    </nav>
+
+    <main class="app-main">
+        @RenderBody()
+    </main>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

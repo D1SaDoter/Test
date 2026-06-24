@@ -1,0 +1,56 @@
+@model CreateOrderViewModel
+
+@{
+    ViewData["Title"] = "Создать заказ";
+}
+
+<form asp-action="Create" method="post" novalidate class="screen screen-form stack-6">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="stack-4">
+        <div class="grid-2">
+            <div class="field">
+                <label asp-for="SenderCity"></label>
+                <input asp-for="SenderCity" class="form-control" placeholder="Введите город" />
+                <span asp-validation-for="SenderCity" class="text-danger"></span>
+            </div>
+            <div class="field">
+                <label asp-for="SenderAddress"></label>
+                <input asp-for="SenderAddress" class="form-control" placeholder="Введите адрес" />
+                <span asp-validation-for="SenderAddress" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div class="field">
+                <label asp-for="RecipientCity"></label>
+                <input asp-for="RecipientCity" class="form-control" placeholder="Введите город" />
+                <span asp-validation-for="RecipientCity" class="text-danger"></span>
+            </div>
+            <div class="field">
+                <label asp-for="RecipientAddress"></label>
+                <input asp-for="RecipientAddress" class="form-control" placeholder="Введите адрес" />
+                <span asp-validation-for="RecipientAddress" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div class="field">
+                <label asp-for="CargoWeightKg"></label>
+                <input asp-for="CargoWeightKg" type="text" inputmode="decimal" class="form-control" placeholder="0.0" />
+                <span asp-validation-for="CargoWeightKg" class="text-danger"></span>
+            </div>
+            <div class="field">
+                <label asp-for="PickupDate"></label>
+                <input asp-for="PickupDate" class="form-control" />
+                <span asp-validation-for="PickupDate" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary submit-btn">Создать заказ</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
